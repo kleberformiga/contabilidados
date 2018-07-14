@@ -1,17 +1,57 @@
-#' Baixa dados de matrix do economatica
+#' Transforma dados de matrix do economatica em painel
 #'
-#' Mais detalhes
+#' Em pesquisas na area de financas com dados em painel o pesquisador, por vezes,
+#' fazer estimacoes com dados dispostos em painel. Contudo, as fontes de coleta
+#' nem sempre disponibiliza dados no formato painel. Esse formato consiste em
+#' dispor os dados em cross-section (i) e tempo (t).
+#' Esse codigo tranforma em painel os dados coletados na base Economatica(R),
+#' desde que coletadas no template MATRIX. Nesse template os dados sao dispostos
+#' em colunas (nao painel) em que cada coluna possui o codigo da empresa e a
+#' variavel correspondente.
+#' A vantagem desse codigo eh permitir que os dados sejam coletados em um unico
+#' arquivo do tipo xlsx em que cada aba contera uma variavel de interesse da
+#' pesquisa.
 #'
-#' @param Nome Nome da variavel
-#' @param PathFile Caminho do aquivo
 #'
-#' @return o valor...
+#' @param Nome Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
+#' o nome da variavel no banco de dados.
+#' que aparecera no banco de dados.
+#' @param PathFile Caminho do arquivo xlsx.
+#' @param Periodo Nome a ser dado a frequencia. Essa informacao fica a criterio
+#' do pesquisador para controle de seu banco de dados. Caso os dados coletados
+#' sejam trimestrais, pode-se informar #' "trim", "trimestre", "quarter", etc.
+#' @param Planilha Informar o numero da aba na qual estao os dados a serem
+#' transformados em painel.
+#'
+#' @return Para melhor desempenho no uso do codigo, todos os matrix deverao ser
+#' coletados com as mesmas empresas e o mesmo periodo, permitindo a criacao de
+#' um painel balanceado.
+#'
+#' @seealso \code{\link{data.table}} para manipulacao de dados
+#' @seealso \code{\link{readxl}} para importacao de dados xlsx
 #'
 #' @examples
+#' Considerando a transformacao da primeira aba do arquivo xlsx na qual esta a
+#' variavel ATIVO TOTAL, coletada no matrix na frequencia trimestral, cujo nome
+#' escolhido seja "AtTot":
+#'
+#' BaixaDados("AtTot", "nomedoarquivo.xlsx", "trim", 1)
+#'
+#' Considerando um arquivo com duas ou mais abas (nesse exemplo, duas) em que
+#' o pesquisador deseje transformar em painel de forma automatica:
+#'
+#' dados <- c("precos", "vrmerc") # Vetor com dados de precos e valor de mercado
+#'
+#' for (i in seq_along(dados)) {
+#'    BaixaDados(dados[i], "nomedoarquivo.xlsx", "trim", i)
+#' }
+#'
+#' Após rodar esse exemplo, as duas variaveis estarao dispostas em painel em um
+#' unico banco de dados.
 #'
 #' @export
 BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
-  assign(Nome, read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"), envir = .GlobalEnv)
+  assign(toupper(Nome), read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"), envir = .GlobalEnv)
   setnames(eval(as.name(Nome)), 1L, Periodo)
-  assign(Nome, melt(data.table(eval(as.name(Nome))), id.vars = Periodo, variable.name="cod", value.name = Nome), envir = .GlobalEnv)
+  assign(toupper(Nome), melt(data.table(eval(as.name(Nome))), id.vars = Periodo, variable.name="cod", value.name = Nome), envir = .GlobalEnv)
 }
