@@ -1,7 +1,8 @@
 #' Pacote CONTABILIDADOS
 #'
-#' Fazer a descricao da funcao
-#' completando aqui em baixo
+#' Pacote voltado a disseminacao de funcoes criadas pela equipe CONTABILIDADOS com
+#' o intuito de facilitar coleta, tratamento e estimacao de dados para pesquisas
+#' academicas em contabilidade, economia e administracao.
 #'
 #' @docType package
 #'
