@@ -51,7 +51,18 @@
 #'
 #' @export
 BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
-  assign(toupper(Nome), read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"), envir = .GlobalEnv)
-  setnames(eval(as.name(Nome)), 1L, Periodo)
-  assign(toupper(Nome), melt(data.table(eval(as.name(Nome))), id.vars = Periodo, variable.name="cod", value.name = Nome), envir = .GlobalEnv)
+  ip = installed.packages()
+  for (i in c("data.table", "readxl")){
+    if (!(i %in% ip)) {install.packages(i); library(i, character.only = T)} else{
+      library(i, character.only = T)
+    }
+  }
+  rm(ip, i)
+
+  assign(toupper(paste0("BD", Nome)), read_xlsx(PathFile, sheet = Planilha, skip = 1,
+                                                na = "-"), envir = .GlobalEnv)
+  setnames(eval(as.name(toupper(paste0("BD", Nome)))), 1L, Periodo)
+  assign(toupper(paste0("BD", Nome)), melt(data.table(eval(as.name(
+    toupper(paste0("BD", Nome))))), id.vars = Periodo, variable.name="cod",
+    value.name = Nome), envir = .GlobalEnv)
 }
