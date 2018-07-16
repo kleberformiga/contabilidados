@@ -1,16 +1,14 @@
 #' Transforma dados de matrix do economatica em painel
 #'
 #' Em pesquisas na area de financas com dados em painel o pesquisador, por vezes,
-#' fazer estimacoes com dados dispostos em painel. Contudo, as fontes de coleta
-#' nem sempre disponibiliza dados no formato painel. Esse formato consiste em
-#' dispor os dados em cross-section (i) e tempo (t).
-#' Esse codigo tranforma em painel os dados coletados na base Economatica(R),
-#' desde que coletadas no template MATRIX. Nesse template os dados sao dispostos
-#' em colunas (nao painel) em que cada coluna possui o codigo da empresa e a
-#' variavel correspondente.
-#' A vantagem desse codigo eh permitir que os dados sejam coletados em um unico
-#' arquivo do tipo xlsx em que cada aba contera uma variavel de interesse da
-#' pesquisa.
+#' faz estimacoes com dados dispostos em painel. Contudo, as fontes de coleta nem
+#' sempre disponibiliza dados no formato painel. Esse formato consiste em dispor
+#' os dados em cross-section (i) e tempo (t). Esse codigo tranforma em painel os
+#' dados coletados na base Economatica(R), desde que coletadas no template MATRIX.
+#' Nesse template os dados sao dispostos em colunas (nao painel) em que cada
+#' coluna possui o codigo da empresa para uma mesma variavel. A vantagem desse
+#' codigo eh permitir que os dados sejam coletados em um unico arquivo do tipo
+#' xlsx em que cada aba contera uma variavel de interesse da pesquisa.
 #'
 #'
 #' @param Nome Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
@@ -25,7 +23,8 @@
 #'
 #' @return Para melhor desempenho no uso do codigo, todos os matrix deverao ser
 #' coletados com as mesmas empresas e o mesmo periodo, permitindo a criacao de
-#' um painel balanceado.
+#' um painel balanceado, alem de dar ao pesquisador maior controle sobre os dados
+#' coletados e facilitar a juncao de bancos.
 #'
 #' @seealso \code{\link{data.table}} para manipulacao de dados
 #' @seealso \code{\link{readxl}} para importacao de dados xlsx
@@ -43,11 +42,12 @@
 #' dados <- c("precos", "vrmerc") # Vetor com dados de precos e valor de mercado
 #'
 #' for (i in seq_along(dados)) {
-#'    BaixaDados(dados[i], "nomedoarquivo.xlsx", "trim", i)
+#'    BaixaDados(dados[i], "caminho/nomedoarquivo.xlsx", "trim", i)
 #' }
 #'
-#' Após rodar esse exemplo, as duas variaveis estarao dispostas em painel em um
-#' unico banco de dados.
+#' Após rodar esse exemplo, as duas variaveis estarao dispostas em painel prontas
+#' para serem unidas em um unico banco de dados. O pacote \code{\link{dplyr}} eh
+#' recomendado para esse fim.
 #'
 #' @export
 BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
@@ -57,7 +57,6 @@ BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
       library(i, character.only = T)
     }
   }
-  rm(ip, i)
 
   assign(toupper(paste0("BD", Nome)), read_xlsx(PathFile, sheet = Planilha, skip = 1,
                                                 na = "-"), envir = .GlobalEnv)
