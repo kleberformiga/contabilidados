@@ -28,13 +28,15 @@
 #'
 #' @seealso \code{\link{data.table}} para manipulacao de dados
 #' @seealso \code{\link{readxl}} para importacao de dados xlsx
+#' @source  Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
 #'
+#' @keywords Data.table, teste
 #' @examples
 #' Considerando a transformacao da primeira aba do arquivo xlsx na qual esta a
 #' variavel ATIVO TOTAL, coletada no matrix na frequencia trimestral, cujo nome
-#' escolhido seja "AtTot":
+#' escolhido seja "AtTot": disponivel em  #SOURCE:
 #'
-#' BaixaDados("AtTot", "nomedoarquivo.xlsx", "trim", 1)
+#' BaixaDados("AtTot", "caminho/exemplo1.xlsx", "trim", 1)
 #'
 #' Considerando um arquivo com duas ou mais abas (nesse exemplo, duas) em que
 #' o pesquisador deseje transformar em painel de forma automatica:

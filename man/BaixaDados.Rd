@@ -3,6 +3,9 @@
 \name{BaixaDados}
 \alias{BaixaDados}
 \title{Transforma dados de matrix do economatica em painel}
+\source{
+Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
+}
 \usage{
 BaixaDados(Nome, PathFile, Periodo, Planilha)
 }
@@ -23,25 +26,24 @@ transformados em painel.}
 \value{
 Para melhor desempenho no uso do codigo, todos os matrix deverao ser
 coletados com as mesmas empresas e o mesmo periodo, permitindo a criacao de
-um painel balanceado.
+um painel balanceado, alem de dar ao pesquisador maior controle sobre os dados
+coletados e facilitar a juncao de bancos.
 }
 \description{
 Em pesquisas na area de financas com dados em painel o pesquisador, por vezes,
-fazer estimacoes com dados dispostos em painel. Contudo, as fontes de coleta
-nem sempre disponibiliza dados no formato painel. Esse formato consiste em
-dispor os dados em cross-section (i) e tempo (t).
-Esse codigo tranforma em painel os dados coletados na base Economatica(R),
-desde que coletadas no template MATRIX. Nesse template os dados sao dispostos
-em colunas (nao painel) em que cada coluna possui o codigo da empresa e a
-variavel correspondente.
-A vantagem desse codigo eh permitir que os dados sejam coletados em um unico
-arquivo do tipo xlsx em que cada aba contera uma variavel de interesse da
-pesquisa.
+faz estimacoes com dados dispostos em painel. Contudo, as fontes de coleta nem
+sempre disponibiliza dados no formato painel. Esse formato consiste em dispor
+os dados em cross-section (i) e tempo (t). Esse codigo tranforma em painel os
+dados coletados na base Economatica(R), desde que coletadas no template MATRIX.
+Nesse template os dados sao dispostos em colunas (nao painel) em que cada
+coluna possui o codigo da empresa para uma mesma variavel. A vantagem desse
+codigo eh permitir que os dados sejam coletados em um unico arquivo do tipo
+xlsx em que cada aba contera uma variavel de interesse da pesquisa.
 }
 \examples{
 Considerando a transformacao da primeira aba do arquivo xlsx na qual esta a
 variavel ATIVO TOTAL, coletada no matrix na frequencia trimestral, cujo nome
-escolhido seja "AtTot":
+escolhido seja "AtTot": disponivel em  \\url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
 
 BaixaDados("AtTot", "nomedoarquivo.xlsx", "trim", 1)
 
@@ -51,11 +53,12 @@ o pesquisador deseje transformar em painel de forma automatica:
 dados <- c("precos", "vrmerc") # Vetor com dados de precos e valor de mercado
 
 for (i in seq_along(dados)) {
-   BaixaDados(dados[i], "nomedoarquivo.xlsx", "trim", i)
+   BaixaDados(dados[i], "caminho/nomedoarquivo.xlsx", "trim", i)
 }
 
-Após rodar esse exemplo, as duas variaveis estarao dispostas em painel em um
-unico banco de dados.
+Após rodar esse exemplo, as duas variaveis estarao dispostas em painel prontas
+para serem unidas em um unico banco de dados. O pacote \\code{\\link{dplyr}} eh
+recomendado para esse fim.
 
 }
 \seealso{
@@ -63,3 +66,5 @@ unico banco de dados.
 
 \code{\link{readxl}} para importacao de dados xlsx
 }
+\keyword{Data.table,}
+\keyword{teste}
