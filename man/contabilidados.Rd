@@ -6,8 +6,9 @@
 \alias{contabilidados-package}
 \title{Pacote CONTABILIDADOS}
 \description{
-Fazer a descricao da funcao
-completando aqui em baixo
+Pacote voltado a disseminacao de funcoes criadas pela equipe CONTABILIDADOS com
+o intuito de facilitar coleta, tratamento e estimacao de dados para pesquisas
+academicas em contabilidade, economia e administracao.
 }
 \author{
 Kleber Formiga Miranda \email{mirandakf@ufersa.edu.br}
