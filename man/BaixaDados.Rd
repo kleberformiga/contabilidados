@@ -43,9 +43,9 @@ xlsx em que cada aba contera uma variavel de interesse da pesquisa.
 \examples{
 Considerando a transformacao da primeira aba do arquivo xlsx na qual esta a
 variavel ATIVO TOTAL, coletada no matrix na frequencia trimestral, cujo nome
-escolhido seja "AtTot": disponivel em  \\url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
+escolhido seja "AtTot": disponivel em  #SOURCE:
 
-BaixaDados("AtTot", "nomedoarquivo.xlsx", "trim", 1)
+BaixaDados("AtTot", "caminho/exemplo1.xlsx", "trim", 1)
 
 Considerando um arquivo com duas ou mais abas (nesse exemplo, duas) em que
 o pesquisador deseje transformar em painel de forma automatica:
