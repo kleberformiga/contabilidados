@@ -66,6 +66,6 @@ BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
   setnames(eval(as.name(toupper(paste0("BD", Nome)))), 1L, Periodo)
   assign(toupper(paste0("BD", Nome)), melt(data.table(eval(as.name(
     toupper(paste0("BD", Nome))))), id.vars = Periodo, variable.name="cod",
-    value.name = Nome), envir = .GlobalEnv)
+    value.name = Nome, variable.factor = F, value.factor = F), envir = .GlobalEnv)
 }
 
