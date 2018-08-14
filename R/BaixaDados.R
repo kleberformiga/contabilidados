@@ -59,11 +59,13 @@ BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
       library(i, character.only = T)
     }
   }
-
-  assign(toupper(paste0("BD", Nome)), read_xlsx(PathFile, sheet = Planilha, skip = 1,
-                                                na = "-"), envir = .GlobalEnv)
+  a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"))
+  assign(toupper(paste0("BD", Nome)),
+         read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-",
+                   col_types = c("date", rep("numeric", a-1))),envir = .GlobalEnv)
   setnames(eval(as.name(toupper(paste0("BD", Nome)))), 1L, Periodo)
   assign(toupper(paste0("BD", Nome)), melt(data.table(eval(as.name(
     toupper(paste0("BD", Nome))))), id.vars = Periodo, variable.name="cod",
     value.name = Nome), envir = .GlobalEnv)
 }
+
