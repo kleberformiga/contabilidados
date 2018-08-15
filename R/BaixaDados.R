@@ -20,6 +20,12 @@
 #' sejam trimestrais, pode-se informar #' "trim", "trimestre", "quarter", etc.
 #' @param Planilha Informar o numero da aba na qual estao os dados a serem
 #' transformados em painel.
+#' @param ClassPeriodo Tipo de variavel para periodo do matrix. Se os dados sao
+#' trimestreis 1T2018, por exemplo, informar "character. O padrao eh data, pois
+#' os matrix, normalmente reportam uma data no periodo.
+#' @param ClassValue Tipo de variavel para os valores coletados. Se for setor,
+#' por exemplo, colocar "character". Porém a maioria dos valores coletados sao
+#' decorrentes de dados financeiros. Por isso o padrao eh "numeric".
 #'
 #' @return Para melhor desempenho no uso do codigo, todos os matrix deverao ser
 #' coletados com as mesmas empresas e o mesmo periodo, permitindo a criacao de
@@ -52,7 +58,7 @@
 #' recomendado para esse fim.
 #'
 #' @export
-BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
+BaixaDados <- function(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", ClassValue = "numeric"){
   ip = installed.packages()
   for (i in c("data.table", "readxl")){
     if (!(i %in% ip)) {install.packages(i); library(i, character.only = T)} else{
@@ -62,7 +68,7 @@ BaixaDados <- function(Nome, PathFile, Periodo, Planilha){
   a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"))
   assign(toupper(paste0("BD", Nome)),
          read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-",
-                   col_types = c("date", rep("numeric", a-1))),envir = .GlobalEnv)
+                   col_types = c(ClassPeriodo, rep(ClassValue, a-1))),envir = .GlobalEnv)
   setnames(eval(as.name(toupper(paste0("BD", Nome)))), 1L, Periodo)
   assign(toupper(paste0("BD", Nome)), melt(data.table(eval(as.name(
     toupper(paste0("BD", Nome))))), id.vars = Periodo, variable.name="cod",

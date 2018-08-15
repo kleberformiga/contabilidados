@@ -7,7 +7,8 @@
 Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
 }
 \usage{
-BaixaDados(Nome, PathFile, Periodo, Planilha)
+BaixaDados(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date",
+  ClassValue = "numeric")
 }
 \arguments{
 \item{Nome}{Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
@@ -22,6 +23,14 @@ sejam trimestrais, pode-se informar #' "trim", "trimestre", "quarter", etc.}
 
 \item{Planilha}{Informar o numero da aba na qual estao os dados a serem
 transformados em painel.}
+
+\item{ClassPeriodo}{Tipo de variavel para periodo do matrix. Se os dados sao
+trimestreis 1T2018, por exemplo, informar "character. O padrao eh data, pois
+os matrix, normalmente reportam uma data no periodo.}
+
+\item{ClassValue}{Tipo de variavel para os valores coletados. Se for setor,
+por exemplo, colocar "character". Porém a maioria dos valores coletados sao
+decorrentes de dados financeiros. Por isso o padrao eh "numeric".}
 }
 \value{
 Para melhor desempenho no uso do codigo, todos os matrix deverao ser
@@ -56,7 +65,7 @@ for (i in seq_along(dados)) {
    BaixaDados(dados[i], "caminho/nomedoarquivo.xlsx", "trim", i)
 }
 
-Após rodar esse exemplo, as duas variaveis estarao dispostas em painel prontas
+ApÃ³s rodar esse exemplo, as duas variaveis estarao dispostas em painel prontas
 para serem unidas em um unico banco de dados. O pacote \\code{\\link{dplyr}} eh
 recomendado para esse fim.
 
