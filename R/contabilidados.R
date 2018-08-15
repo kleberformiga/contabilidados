@@ -6,6 +6,10 @@
 #'
 #' @docType package
 #'
+#' @import data.table
+#' @import dplyr
+#' @import readxl
+#'
 #' @author Kleber Formiga Miranda \email{mirandakf@ufersa.edu.br}
 #'
 #' @name contabilidados

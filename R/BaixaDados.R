@@ -59,12 +59,6 @@
 #'
 #' @export
 BaixaDados <- function(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", ClassValue = "numeric"){
-  ip = installed.packages()
-  for (i in c("data.table", "readxl")){
-    if (!(i %in% ip)) {install.packages(i); library(i, character.only = T)} else{
-      library(i, character.only = T)
-    }
-  }
   a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"))
   assign(toupper(paste0("BD", Nome)),
          read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-",
