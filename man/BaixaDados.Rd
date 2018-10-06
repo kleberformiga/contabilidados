@@ -4,7 +4,7 @@
 \alias{BaixaDados}
 \title{Transforma dados de matrix do economatica em painel}
 \source{
-Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
+Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/blob/master/ExemploEconomatica.xlsx?raw=true}
 }
 \usage{
 BaixaDados(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date",

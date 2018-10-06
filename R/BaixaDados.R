@@ -34,7 +34,7 @@
 #'
 #' @seealso \code{\link{data.table}} para manipulacao de dados
 #' @seealso \code{\link{readxl}} para importacao de dados xlsx
-#' @source  Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/raw/master/exemplo1.xlsx}
+#' @source  Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberformiga/contabilidados/blob/master/ExemploEconomatica.xlsx?raw=true}
 #'
 #' @keywords Data.table, teste
 #' @examples
@@ -63,9 +63,9 @@ BaixaDados <- function(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date",
   assign(toupper(paste0("BD", Nome)),
          read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-",
                    col_types = c(ClassPeriodo, rep(ClassValue, a-1))),envir = .GlobalEnv)
-  setnames(eval(as.name(toupper(paste0("BD", Nome)))), 1L, Periodo)
-  assign(toupper(paste0("BD", Nome)), melt(data.table(eval(as.name(
-    toupper(paste0("BD", Nome))))), id.vars = Periodo, variable.name="cod",
-    value.name = Nome, variable.factor = F, value.factor = F), envir = .GlobalEnv)
+  setnames(get(toupper(paste0("BD", Nome))), 1L, Periodo)
+  assign(toupper(paste0("BD", Nome)), melt(data.table(get(toupper(paste0("BD", Nome)))),
+         id.vars = Periodo, variable.name="cod", value.name = Nome, variable.factor = F,
+         value.factor = F), envir = .GlobalEnv)
 }
 
