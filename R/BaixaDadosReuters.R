@@ -34,8 +34,10 @@
 #' @export
 
 BaixaDadosReuters <- function(Nome, PathFile, Planilha, RANGE = "P:R", SKIP = 0){
-  assign(Nome, read_xlsx(PathFile, sheet = Planilha, skip = SKIP,
+  assign(toupper(Nome), read_xlsx(PathFile, sheet = Planilha, skip = SKIP,
                          na = c("-", "NULL", "#N/A"), range = cell_cols(RANGE)),
          envir = .GlobalEnv)
+  setnames(get(toupper(Nome)), 1L:3L, c("cod", "data", Nome))
+  setDT(get(toupper(Nome)))
 }
 
