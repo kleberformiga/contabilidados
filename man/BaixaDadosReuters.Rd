@@ -62,7 +62,8 @@ apenas alterar o parametro RANGE para U:W, caso queira coletar trimestral.
 Para iniciar o codigo, cria-se um vetor chamado "dados", composto pelo nome de cada variavel,
 na ordem em que sao dispostas nas abas da planilha. O codigo deve ser assim executado:
 
-dados <- c("Receita", "AtivoTotal")
+dados <- c("Receita", "AtivoTotal") # lista de variaveis na sequencia das abas do XLSX
+index <- c("cod", "data") # normalmente a planilha gera como indice o codigo e a data
 
 # for (i in seq_along(dados)) {
   if(i==1){AuditaBD <- data.frame(Variavel = NA, codigo = NA, Descricao = NA)}
