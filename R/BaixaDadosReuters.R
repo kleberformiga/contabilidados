@@ -6,9 +6,8 @@
 #' para coleta de dados em painel na plataforma Eikon da Thomson Reuters relativa a informacoes
 #' financeiras.
 #'
-#' @param Nome Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
-#' o nome da variavel no banco de dados.
-#' que aparecera no banco de dados.
+#' @param Nome Nome da variavel. O nome informado sera processado como sendo
+#' o nome da variavel no banco de dados e o nome do banco de dados (com letras maiusculas)
 #' @param PathFile Caminho do arquivo xlsx.
 #' @param Planilha Informar o numero da aba na qual estao os dados a serem
 #' transformados em painel.

@@ -10,9 +10,8 @@ Os dados usados no exemplo estao disponiveis em \url{https://github.com/kleberfo
 BaixaDadosReuters(Nome, PathFile, Planilha, RANGE = "P:R", SKIP = 0)
 }
 \arguments{
-\item{Nome}{Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
-o nome da variavel no banco de dados.
-que aparecera no banco de dados.}
+\item{Nome}{Nome da variavel. O nome informado sera processado como sendo
+o nome da variavel no banco de dados e o nome do banco de dados (com letras maiusculas)}
 
 \item{PathFile}{Caminho do arquivo xlsx.}
 

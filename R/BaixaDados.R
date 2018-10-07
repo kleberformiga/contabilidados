@@ -11,9 +11,8 @@
 #' xlsx em que cada aba contera uma variavel de interesse da pesquisa.
 #'
 #'
-#' @param Nome Vetor com nomes das variaveis. Os nomes contidos nesse vetor sera
-#' o nome da variavel no banco de dados.
-#' que aparecera no banco de dados.
+#' @param Nome Nome da variavel. O nome informado sera processado como sendo
+#' o nome da variavel no banco de dados e o nome do banco de dados (com letras maiusculas)
 #' @param PathFile Caminho do arquivo xlsx.
 #' @param Periodo Nome a ser dado a frequencia. Essa informacao fica a criterio
 #' do pesquisador para controle de seu banco de dados. Caso os dados coletados
