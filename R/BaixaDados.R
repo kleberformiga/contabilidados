@@ -20,7 +20,7 @@
 #' @param Planilha Informar o numero da aba na qual estao os dados a serem
 #' transformados em painel.
 #' @param ClassPeriodo Tipo de variavel para periodo do matrix. Se os dados sao
-#' trimestreis 1T2018, por exemplo, informar "character. O padrao eh data, pois
+#' trimestreis 1T2018, por exemplo, informar "text". O padrao eh data, pois
 #' os matrix, normalmente reportam uma data no periodo.
 #' @param ClassValue Tipo de variavel para os valores coletados. Se for setor,
 #' por exemplo, colocar "character". Porém a maioria dos valores coletados sao
