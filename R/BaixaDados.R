@@ -58,10 +58,10 @@
 #'
 #' @export
 BaixaDados <- function(Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", ClassValue = "numeric"){
-  a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-"))
+  a <- ncol(read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-", .name_repair = "minimal"))
   assign(toupper(paste0("BD", Nome)),
          read_xlsx(PathFile, sheet = Planilha, skip = 1, na = "-",
-                   col_types = c(ClassPeriodo, rep(ClassValue, a-1))),envir = .GlobalEnv)
+                   col_types = c(ClassPeriodo, rep(ClassValue, a-1)), .name_repair = "minimal"),envir = .GlobalEnv)
   setnames(get(toupper(paste0("BD", Nome))), 1L, Periodo)
   assign(toupper(paste0("BD", Nome)), melt(data.table(get(toupper(paste0("BD", Nome)))),
          id.vars = Periodo, variable.name="cod", value.name = Nome, variable.factor = F,
