@@ -24,7 +24,7 @@ sejam trimestrais, pode-se informar #' "trim", "trimestre", "quarter", etc.}
 transformados em painel.}
 
 \item{ClassPeriodo}{Tipo de variavel para periodo do matrix. Se os dados sao
-trimestreis 1T2018, por exemplo, informar "character. O padrao eh data, pois
+trimestreis 1T2018, por exemplo, informar "text". O padrao eh data, pois
 os matrix, normalmente reportam uma data no periodo.}
 
 \item{ClassValue}{Tipo de variavel para os valores coletados. Se for setor,
