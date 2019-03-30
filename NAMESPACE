@@ -2,6 +2,7 @@
 
 export(BaixaDados)
 export(BaixaDadosReuters)
+export(CarregaPacotes)
 import(data.table)
 import(dplyr)
 import(readxl)
