@@ -1,23 +1,22 @@
-carregaPacotes <- function (pcts) 
-{
-  if (!require(pcts, character.only = T)) {
-    install.packages(pcts)
-    require(pcts, character.only = T, quietly = T)
-  }
-}
-
-
-instalaPacotes <- function(x = c("dplyr", "data.table", "tidyverse", "readxl")){
+carregaPacotes <- function (pcts = c("dplyr", "data.table", "readxl", "tidyverse")){
   
+  ################ Instruções #####################################################
+  # Objetivo: Carregar um pacote. Caso não exista, instala e carrega
   # Informa um vetor com os pacotes a serem instalados
   # Se nada informado, por padrão, instala: dplyr, data.table, tidyverse e readxl
+  # Esses pacotes são necessários para manipulação de dados
+  #################################################################################
   
-  for (i in x) {
-    carregaPacotes(i)
+  for (i in pcts) {
+    if (!require(i, character.only = T)) {
+      install.packages(i)
+      require(i, character.only = T, quietly = T)
+    }
   }
 }
 
-instalaPacotes()
+carregaPacotes()
+
 
 BaixaDados <- function (Nome, PathFile, Periodo, Planilha, ClassPeriodo = "date", 
                         ClassValue = "numeric") {
@@ -50,5 +49,17 @@ BaixaDadosReuters <- function (Nome, PathFile, Planilha, RANGE = "P:R", SKIP = 0
          envir = .GlobalEnv)
   setnames(get(toupper(Nome)), 1L:3L, c("cod", "data", Nome))
   setDT(get(toupper(Nome)))
+}
+
+
+mediaGeometrica <- function(x){
+
+  ################ Instruções #####################################################
+  # Objetivo: Gerar a média geométrica do vetor informado
+  # Informa um vetor com os números que comporão a média
+  # Valores NA serão desconsiderados
+  #################################################################################
+  
+  round(prod(x, na.rm = T)^(1/length(x[!is.na(x)])), 3)
 }
 
