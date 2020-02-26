@@ -264,3 +264,9 @@ cntdd.uneMatrix <- function(Arquivo, SeqVarPlan, index, clsPer, clsVlr){
   cat("Os dados foram armazenados, em painel, no objeto 'bdPainel' ", "\n")
   
 }
+
+
+mes.nome <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+              "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro")
+
+mes.abb  <- substr(mes.nome, 1, 3)
