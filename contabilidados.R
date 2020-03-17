@@ -284,4 +284,4 @@ meses <- data.frame(mes.num = 1:12, mes.nome = mes.nome, mes.abb = mes.abb, mont
   
 rm(mes.nome, mes.abb)
 
-
+bd.eccd.001 <- readRDS("https://github.com/kleberformiga/contabilidados/blob/master/bd.eccd.001.rds?raw=true")
