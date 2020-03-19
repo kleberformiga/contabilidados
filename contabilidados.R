@@ -283,5 +283,3 @@ mes.abb  <- substr(mes.nome, 1, 3)
 meses <- data.frame(mes.num = 1:12, mes.nome = mes.nome, mes.abb = mes.abb, month.name = month.name, month.abb = month.abb)
   
 rm(mes.nome, mes.abb)
-
-bd.eccd.001 <- readRDS("https://raw.githubusercontent.com/kleberformiga/contabilidados/master/bd.eccd.001.rds")
