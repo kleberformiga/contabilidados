@@ -280,6 +280,8 @@ mes.nome <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho
 
 mes.abb  <- substr(mes.nome, 1, 3)
 
-meses <- data.frame(mes.num = 1:12, mes.nome = mes.nome, mes.abb = mes.abb, month.name = month.name, month.abb = month.abb)
+trim <- rep(1:4, each = 3)
+
+meses <- data.frame(mes.num = 1:12, mes.nome = mes.nome, mes.abb = mes.abb, month.name = month.name, month.abb = month.abb, trim = trim)
   
 rm(mes.nome, mes.abb)
