@@ -69,9 +69,9 @@ cntdd.BaixaDados <- function (Nome, PathFile, Periodo, Planilha, ClassPeriodo = 
                                                 skip = 1, na = "-", col_types = c(ClassPeriodo, rep(ClassValue, 
                                                                                                     a - 1))), envir = .GlobalEnv)
   setnames(get(toupper(paste0("BD", Nome))), 1L, Periodo)
-  assign(toupper(paste0("BD", Nome)), melt(data.table(get(toupper(paste0("BD", 
+  assign(toupper(paste0("BD", Nome)), data.frame(melt(data.table(get(toupper(paste0("BD", 
                                                                          Nome)))), id.vars = Periodo, variable.name = "cod", value.name = Nome, 
-                                           variable.factor = F, value.factor = F), envir = .GlobalEnv)
+                                           variable.factor = F, value.factor = F)), envir = .GlobalEnv)
 }
 
 
@@ -209,7 +209,7 @@ cntdd.variosMatrix <- function(Arquivo, SeqVarPlan, index = c("cod", "trim"), cl
     AuditaVetores[i,1] = toupper(paste0("BD", SeqVarPlan))[i]; AuditaVetores[i, 2] = names(setDT(read_xlsx(Arquivo, sheet = i, skip = 0, na = "-", range = "B1:B3")))
     
   }
-  
+  bds <<- lapply(bds, data.frame)
   print(AuditaVetores)
   
 }
