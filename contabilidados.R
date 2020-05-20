@@ -209,7 +209,7 @@ cntdd.variosMatrix <- function(Arquivo, SeqVarPlan, index = c("cod", "trim"), cl
     AuditaVetores[i,1] = toupper(paste0("BD", SeqVarPlan))[i]; AuditaVetores[i, 2] = names(setDT(read_xlsx(Arquivo, sheet = i, skip = 0, na = "-", range = "B1:B3")))
     
   }
-
+  
   print(AuditaVetores)
   
 }
@@ -257,7 +257,7 @@ cntdd.uneMatrix <- function(Arquivo, SeqVarPlan, index, clsPer, clsVlr){
   
   cntdd.variosMatrix(Arquivo = Arquivo, SeqVarPlan = SeqVarPlan, index = index, clsPer = clsPer, clsVlr = clsVlr)
   
-  bds <- lapply(bds, data.frame)
+  bds <<- lapply(bds, data.frame)
   bdPainel <<- Reduce(merge, bds)
   
   cntdd.limpaMatrix()
