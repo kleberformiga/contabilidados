@@ -257,6 +257,7 @@ cntdd.uneMatrix <- function(Arquivo, SeqVarPlan, index, clsPer, clsVlr){
   
   cntdd.variosMatrix(Arquivo = Arquivo, SeqVarPlan = SeqVarPlan, index = index, clsPer = clsPer, clsVlr = clsVlr)
   
+  bds <- lapply(bds, data.frame)
   bdPainel <<- Reduce(merge, bds)
   
   cntdd.limpaMatrix()
