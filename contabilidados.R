@@ -279,14 +279,15 @@ cntdd.theme <- theme(legend.position = "bottom", legend.title = element_blank(),
 mes.nome <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
               "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro")
 
-mes.abb  <- substr(mes.nome, 1, 3)
-
-mes.chr <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
-
-trim <- rep(1:4, each = 3)
-
-meses <- data.frame(mes.num = 1:12, mes.nome = mes.nome, mes.abb = mes.abb,
-                    month.name = month.name, month.abb = month.abb,
-                    trim = trim, mes.chr = mes.chr)
+meses <- data.frame(mes.num = 1:12,
+                    mes.nome = mes.nome,
+                    mes.abb = substr(mes.nome, 1, 3),
+                    month.name = month.name,
+                    month.abb = month.abb,
+                    mes.chr = c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"),
+                    bim  = rep(1:6, each = 2),
+                    trim = rep(1:4, each = 3),
+                    quad = rep(1:3, each = 4),
+                    sem  = rep(1:2, each = 6))
   
-rm(mes.nome, mes.abb)
+rm(mes.nome)
